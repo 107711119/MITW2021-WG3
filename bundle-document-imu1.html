@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+   
+	<script src="setting.js"></script>
+    <script src="HTTP2019.js"></script>
+<script>
+
+
+var myObj=
+{
+    "resourceType": "Bundle",
+    "id": "25a6547b-b781-46cd-a105-f1d8bc1dca02",
+    "identifier" : {
+      "system" : "https://www.vghtc.gov.tw",
+      "value" : "TW.0617060018.20210525103000888.001",
+      "period" : {
+        "start" : "2021-05-25",
+        "end" : "2022-05-25"
+      }
+    },
+    "type": "document",
+    "timestamp" : "2021-05-25T11:30:00+08:00",
+    "entry": [
+      {
+        "fullUrl" : "urn:uuid:4024",
+        "resource" : {
+          "resourceType" : "Composition", /* [0] */
+          "id" : "4024",
+          "status" : "final",
+          "type" : {
+            "coding" : [
+              {
+                "system" : "http://loinc.org",
+                "code" : "82593-5",
+                "display" : "Immunization summary report"
+              }
+            ]
+          },
+          "subject" : {
+            "reference" : "urn:uuid:3981"
+          },
+          "date" : "2021-05-25T11:30:00+08:00",
+          "title" : "COVID-19 Vaccine Certificate May 25, 2021 14:30",
+          "author" : [
+            {
+              "reference" : "urn:uuid:3982"
+            }
+          ],
+          "section" : [
+            {
+              "entry" : [
+                {
+                  "reference" : "urn:uuid:3981" /*patient*/
+                },
+                {
+                  "reference" : "urn:uuid:3983"  /*Immunization*/
+                },
+                {
+                  "reference" : "urn:uuid:3982" /*Organization*/
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "fullUrl" : "urn:uuid:3982",
+        "resource": {
+          "resourceType": "Organization",   /* [1] */
+          /*"id": "45a5c5b1-4ec1-4d60-b4b2-ff5a84a41fd7",*/
+          "identifier": [
+            {
+              "system": "https://ma.mohw.gov.tw/",
+              "value": "0617060018"
+            }
+          ],
+          "name": "臺中榮民總醫院 Taichung Veterans General Hospital",
+          "address": [
+              {
+                "country": "TW"
+              }
+          ]
+        }
+      },
+      {
+        "fullUrl" : "urn:uuid:3981",
+        "resource": {
+          "resourceType": "Patient",  /* [2] */
+          /*"id": "e2326984-eabb-11eb-9a03-0242ac130003",*/
+          "identifier": [
+            {
+              "system": "https://www.dicom.org.tw/cs/identityCardNumber_tw",
+              "value": "M123456789"
+            }
+          ],
+          "name": [
+            {
+              "text": "王大明",
+              "family": "王",
+              "given": ["大明"]
+            },
+            {
+              "text": "Da-Ming Wang",
+              "family": "Wang",
+              "given": ["Da-Ming"]
+            }
+          ],
+          "birthDate": "1988-12-25",
+          "address": [
+              {
+                "country": "TW"
+              }
+          ]
+        }
+      },
+      {
+        "fullUrl" : "urn:uuid:3983",
+        "resource": {
+          "resourceType": "Immunization",  /* [3] */
+          /*"id": "04306928-eac1-11eb-9a03-0242ac130003",*/
+          "status": "completed",
+          "vaccineCode": {
+            "coding": [
+              {
+                "system": "https://www.cdc.gov.tw",
+                "code": "CoV_AZ",
+                "display": "AZD1222"
+              }
+            ]
+          },
+          "patient": {
+            "reference": "Patient/3981"
+          },
+          "occurrenceDateTime": "2021-05-25",
+          "performer": [
+              {
+                "actor": {
+                  "reference": "Organization/3749"
+                }
+              },
+              {
+                "actor": { 
+                  "display": "王醫師"
+                 }
+              }
+          ],
+          "manufacturer": {
+            "display": "AstraZeneca"
+          },
+          "lotNumber": "CTMAV509-CDC",
+          "protocolApplied": [
+            {
+              "targetDisease": [
+                {
+                  "coding": [
+                    {
+                      "system": "http://hl7.org/fhir/sid/icd-10",
+                      "code": "U07.1",
+                      "display": "COVID-19, virus identified"
+                    }
+                  ]
+                }
+              ],
+              "doseNumberPositiveInt": 1,
+              "seriesDosesPositiveInt": 2
+            }
+          ]
+        }
+      }
+    ]
+  }
+
+function postData(){
+  /*var subRef = "Patient/";
+  /*myObj.entry[2].resource.subject.reference =   subRef  +  document.getElementById("FHIRPtionID").value;
+  myObj.entry[2].resource.subject.display=document.getElementById("name").value;
+  myObj.entry[2].resource.birthDate=document.getElementById("birthdate1").value;
+  myObj.entry[2].resource.address[0].country=document.getElementById("country1").value;
+  myObj.entry[2].resource.identifier[0].value=document.getElementById("identifier1").value;
+  /*myobj.entry[3].resource.*/
+  /*myObj.entry[3].resource.vaccineCode.codeing[0].display=document.getElementById("imuname1").value;
+  myObj.entry[3].resource.protocolApplied[0].doseNumberPositiveInt=document.getElementById("dosenumber1").value;
+  myObj.entry[3].resource.manufacturer=document.getElementById("manufacturer1").value;
+  myObj.entry[1].name=document.getElementById("organization1").value;
+  myObj.entry[3].performer[0].actor.display=document.getElementById("performer1").value;*/
+
+
+  var jsonStr = JSON.stringify(myObj);
+    alert("aa");
+    var apiURL;
+    apiURL = FHIRrootURL + '/' + "Bundle";
+    HTTPPostData(apiURL, jsonStr); 
+}
+
+</script>
+</head>
+
+
+<body style="height: 780px">
+  名字:
+  <input type="text" name="pateintName" value="Mickey" id="name"/> &nbsp;
+  FHIR patient id:
+  <input type="text"  value="unknown" id="FHIRPtionID"/>  <br/>
+
+  出生日期:<input type="date" id="birthdate1"><br><br>
+
+  國籍: <input type="text" id="country1"> <br><br>
+
+  身分證字號:<input type="text" id="identifier1"> <br><br>
+
+  疫苗種類:&nbsp;
+  <select id="imutype1">
+    <option value="">請選擇疫苗種類</option>
+    <option value="COVID-19">COVID-19疫苗</option>
+    <option value="flu">流感疫苗</option>
+  </select><br><br>
+
+  疫苗名稱:&nbsp;
+  <select id="imuname1">
+    <option value="">請選擇疫苗名稱</option>
+    <option value="AZ">AstraZeneca</option>
+    <option value="Moderna">Moderna</option>
+    <option value="MVC">高端</option>
+    <option value="BNT">BNT</option>
+  </select>
+
+  劑別:&nbsp;
+  <select id="dosenumber1">
+    <option value="">請選擇第幾劑</option>
+    <option value="n1">第一劑</option>
+    <option value="n2">第二劑</option>
+  </select><br><br>
+
+  疫苗廠牌(製造商): &nbsp;
+  <select id="manufacturer1">
+    <option value="">請選擇製造商</option>
+    <option value="AZ">AstraZeneca</option>
+    <option value="Moderna">Moderna</option>
+    <option value="MVC">高端</option>
+    <option value="BNT">BNT</option>
+  </select><br><br>
+
+  接種單位:<input type="text" id="organization1">
+  <br><br>
+
+  醫生或接種者:<input type="text" id="performer1">
+  <br><br>
+
+  <input id="Button1" onclick="postData()"  type="button" value="postData" />
+  <br><br>
+</body>
+<script>
+  document.getElementById("FHIRPtionID").value = getCookie("patientID");
+    document.getElementById("name").value = getCookie("patientName");
+</script>
+</html>
