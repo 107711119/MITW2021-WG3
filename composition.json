@@ -1,0 +1,32 @@
+{
+    "resourceType": "Composition",
+    "id": "4024",
+    "status": "final",
+    "type": {
+        "coding": [{
+            "system": "http://loinc.org",
+            "code": "82593-5",
+            "display": "Immunization summary report"
+        }]
+    },
+    "subject": {
+        "reference": "urn:uuid:3981"
+    },
+    "date": "2021-05-25T11:30:00+08:00",
+    "title": "COVID-19 Vaccine Certificate May 25, 2021 14:30",
+    "author": [{
+        "reference": "urn:uuid:3982"
+    }],
+    "section": [{
+        "entry": [{
+                "reference": "urn:uuid:3981" //patient 
+            },
+            {
+                "reference": "urn:uuid:3983" /*Immunization*/
+            },
+            {
+                "reference": "urn:uuid:3982" /*Organization*/
+            }
+        ]
+    }]
+}
